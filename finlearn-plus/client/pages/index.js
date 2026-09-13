@@ -21,6 +21,21 @@ const modules = [
 export default function Home() {
   return (
     <div className="min-h-screen">
+
+      {/* Live Demo Banner */}
+      <div className="bg-gradient-to-r from-indigo-600 to-cyan-600 text-white text-center py-2.5 px-4 text-sm font-medium">
+        🌐 Live App →{" "}
+        <a
+          href="https://client-one-theta-27.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-2 hover:text-white/80 transition font-bold"
+        >
+          https://client-one-theta-27.vercel.app
+        </a>
+        {" "}— Open in any browser, share with anyone!
+      </div>
+
       {/* Hero */}
       <section className="relative overflow-hidden px-6 py-24 text-center">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-cyan-500/10 pointer-events-none" />
