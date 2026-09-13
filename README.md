@@ -2,6 +2,12 @@
 
 A daily journal to track my learning, projects, and progress as a developer.
 
+## 🌐 Live App
+
+> **FinLearn+** — India's financial literacy + stock trading simulator platform
+
+👉 **[https://client-one-theta-27.vercel.app](https://client-one-theta-27.vercel.app)**
+
 ## 🎯 Goal
 Make consistent daily contributions on GitHub and document my growth.
 
