@@ -2,12 +2,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
 import { FiHome, FiTrendingUp, FiPieChart, FiCreditCard, FiBarChart2, FiBookOpen, FiLogOut, FiUser } from "react-icons/fi";
-import { RiBankLine } from "react-icons/ri";
+import { RiBankLine, RiStockLine } from "react-icons/ri";
 
 const navLinks = [
   { href: "/", label: "Home", icon: FiHome },
   { href: "/demo", label: "Demo", icon: FiBookOpen },
   { href: "/trading", label: "Trading", icon: FiTrendingUp },
+  { href: "/demat", label: "Demat", icon: RiStockLine },
   { href: "/investments", label: "Invest", icon: FiPieChart },
   { href: "/banking", label: "Banking", icon: RiBankLine },
   { href: "/payments", label: "Payments", icon: FiCreditCard },
