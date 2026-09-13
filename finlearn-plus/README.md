@@ -7,6 +7,12 @@
 ![Node.js](https://img.shields.io/badge/Node.js-Express-green?style=for-the-badge&logo=nodedotjs)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=for-the-badge&logo=mongodb)
 
+## 🌐 Live Demo
+
+👉 **[https://client-one-theta-27.vercel.app](https://client-one-theta-27.vercel.app)**
+
+> Deployed on Vercel — accessible from anywhere, no setup needed.
+
 ---
 
 ## 🚀 Features
