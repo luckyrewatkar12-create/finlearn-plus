@@ -3,19 +3,19 @@ import { motion } from "framer-motion";
 import { FiTrendingUp, FiShield, FiBookOpen, FiAward, FiArrowRight } from "react-icons/fi";
 
 const features = [
-  { icon: FiBookOpen, title: "Learn Finance", desc: "Gamified modules covering stocks, mutual funds, SIP, and more.", color: "indigo" },
-  { icon: FiTrendingUp, title: "Trade Stocks", desc: "Real-time simulator with live market data and portfolio tracking.", color: "cyan" },
-  { icon: FiShield, title: "Demo Mode", desc: "Practice with ₹1,00,000 virtual currency — zero risk.", color: "green" },
-  { icon: FiAward, title: "Earn Badges", desc: "Unlock achievements as you complete learning milestones.", color: "amber" },
+  { icon: FiBookOpen, title: "Learn Finance", desc: "Gamified modules covering stocks, mutual funds, SIP, and more.", color: "indigo", href: "/demo" },
+  { icon: FiTrendingUp, title: "Trade Stocks", desc: "Real-time simulator with live market data and portfolio tracking.", color: "cyan", href: "/trading" },
+  { icon: FiShield, title: "Demo Mode", desc: "Practice with ₹1,00,000 virtual currency — zero risk.", color: "green", href: "/demo" },
+  { icon: FiAward, title: "Earn Badges", desc: "Unlock achievements as you complete learning milestones.", color: "amber", href: "/demo" },
 ];
 
 const modules = [
-  { title: "Basics of Investing", level: "Beginner", modules: 8, color: "indigo" },
-  { title: "Stock Market 101", level: "Beginner", modules: 12, color: "cyan" },
-  { title: "Mutual Funds Deep Dive", level: "Intermediate", modules: 10, color: "amber" },
-  { title: "SIP & Long-term Wealth", level: "Intermediate", modules: 9, color: "green" },
-  { title: "Advanced Trading", level: "Advanced", modules: 15, color: "red" },
-  { title: "Portfolio Management", level: "Advanced", modules: 11, color: "purple" },
+  { title: "Basics of Investing", level: "Beginner", modules: 8, color: "indigo", href: "/demo" },
+  { title: "Stock Market 101", level: "Beginner", modules: 12, color: "cyan", href: "/demo" },
+  { title: "Mutual Funds Deep Dive", level: "Intermediate", modules: 10, color: "amber", href: "/investments" },
+  { title: "SIP & Long-term Wealth", level: "Intermediate", modules: 9, color: "green", href: "/investments" },
+  { title: "Advanced Trading", level: "Advanced", modules: 15, color: "red", href: "/trading" },
+  { title: "Portfolio Management", level: "Advanced", modules: 11, color: "purple", href: "/analytics" },
 ];
 
 export default function Home() {
@@ -67,20 +67,25 @@ export default function Home() {
       <section className="px-6 py-16 max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-center text-white mb-12">Everything you need to master finance</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map(({ icon: Icon, title, desc, color }, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="glass rounded-xl p-6 hover:border-indigo-500/40 transition"
-            >
-              <div className={`w-12 h-12 rounded-xl bg-${color}-500/20 flex items-center justify-center mb-4`}>
-                <Icon size={22} className={`text-${color}-400`} />
-              </div>
-              <h3 className="text-white font-semibold mb-2">{title}</h3>
-              <p className="text-slate-400 text-sm">{desc}</p>
-            </motion.div>
+          {features.map(({ icon: Icon, title, desc, color, href }, i) => (
+            <Link href={href} key={i}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ scale: 1.04, y: -4 }}
+                className="glass rounded-xl p-6 hover:border-indigo-500/40 transition cursor-pointer group"
+              >
+                <div className={`w-12 h-12 rounded-xl bg-${color}-500/20 flex items-center justify-center mb-4 group-hover:bg-${color}-500/30 transition`}>
+                  <Icon size={22} className={`text-${color}-400`} />
+                </div>
+                <h3 className="text-white font-semibold mb-2 group-hover:text-indigo-400 transition">{title}</h3>
+                <p className="text-slate-400 text-sm">{desc}</p>
+                <p className={`text-${color}-400 text-xs mt-3 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition`}>
+                  Explore <FiArrowRight size={11} />
+                </p>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </section>
@@ -94,26 +99,32 @@ export default function Home() {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {modules.map(({ title, level, modules: count }, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.02 }}
-              className="glass rounded-xl p-5 cursor-pointer hover:border-indigo-500/40 transition"
-            >
-              <div className="flex items-start justify-between mb-3">
-                <span className={`text-xs px-2 py-1 rounded-full ${
-                  level === "Beginner" ? "bg-green-500/20 text-green-400" :
-                  level === "Intermediate" ? "bg-amber-500/20 text-amber-400" :
-                  "bg-red-500/20 text-red-400"
-                }`}>{level}</span>
-                <span className="text-xs text-slate-500">{count} lessons</span>
-              </div>
-              <h3 className="text-white font-semibold">{title}</h3>
-              <div className="mt-3 h-1.5 bg-slate-700 rounded-full">
-                <div className="h-full w-0 bg-indigo-500 rounded-full" />
-              </div>
-              <p className="text-slate-500 text-xs mt-1">0% complete</p>
-            </motion.div>
+          {modules.map(({ title, level, modules: count, href }, i) => (
+            <Link href={href} key={i}>
+              <motion.div
+                whileHover={{ scale: 1.03, y: -3 }}
+                className="glass rounded-xl p-5 cursor-pointer hover:border-indigo-500/40 transition group"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <span className={`text-xs px-2 py-1 rounded-full ${
+                    level === "Beginner" ? "bg-green-500/20 text-green-400" :
+                    level === "Intermediate" ? "bg-amber-500/20 text-amber-400" :
+                    "bg-red-500/20 text-red-400"
+                  }`}>{level}</span>
+                  <span className="text-xs text-slate-500">{count} lessons</span>
+                </div>
+                <h3 className="text-white font-semibold group-hover:text-indigo-400 transition">{title}</h3>
+                <div className="mt-3 h-1.5 bg-slate-700 rounded-full">
+                  <div className="h-full w-0 bg-indigo-500 rounded-full" />
+                </div>
+                <div className="flex items-center justify-between mt-2">
+                  <p className="text-slate-500 text-xs">0% complete</p>
+                  <p className="text-indigo-400 text-xs flex items-center gap-1 opacity-0 group-hover:opacity-100 transition">
+                    Start <FiArrowRight size={11} />
+                  </p>
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </section>
