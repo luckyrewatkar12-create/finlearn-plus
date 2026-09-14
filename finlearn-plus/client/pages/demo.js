@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { FiLock, FiCheckCircle, FiAward, FiPlay } from "react-icons/fi";
 import toast from "react-hot-toast";
@@ -31,9 +32,20 @@ const modules = [
 ];
 
 export default function Demo() {
+  const router = useRouter();
+  const badgesRef = useRef(null);
   const [activeModule, setActiveModule] = useState(null);
   const [completed, setCompleted] = useState([1]);
   const [virtualBalance] = useState(100000);
+
+  // Scroll to badges section if #badges in URL
+  useEffect(() => {
+    if (router.asPath.includes("#badges") && badgesRef.current) {
+      setTimeout(() => {
+        badgesRef.current.scrollIntoView({ behavior: "smooth" });
+      }, 300);
+    }
+  }, [router.asPath]);
 
   const completeModule = (id) => {
     if (!completed.includes(id)) {
@@ -143,6 +155,36 @@ export default function Demo() {
           </motion.div>
         </div>
       )}
+
+      {/* Badges Section */}
+      <div ref={badgesRef} id="badges" className="mt-12">
+        <h2 className="text-2xl font-bold text-white mb-6">🏆 Badges & Achievements</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {[
+            { icon: "🎯", name: "First Step", desc: "Complete your first module", earned: completed.length >= 1 },
+            { icon: "🔥", name: "On a Roll", desc: "Complete 3 modules", earned: completed.length >= 3 },
+            { icon: "⚡", name: "XP Hunter", desc: "Earn 500 XP", earned: totalXP >= 500 },
+            { icon: "📚", name: "Bookworm", desc: "Complete all 6 modules", earned: completed.length >= 6 },
+            { icon: "🌟", name: "Knowledge Seeker", desc: "Earn 1000 XP", earned: totalXP >= 1000 },
+            { icon: "💼", name: "Investor", desc: "Visit investments page", earned: false },
+            { icon: "📈", name: "Trader", desc: "Visit trading page", earned: false },
+            { icon: "🏦", name: "Banker", desc: "Link a bank account", earned: false },
+            { icon: "💳", name: "Payer", desc: "Make first payment", earned: false },
+            { icon: "🏆", name: "Master Investor", desc: "Complete everything", earned: false },
+          ].map(({ icon, name, desc, earned }) => (
+            <motion.div
+              key={name}
+              whileHover={{ scale: 1.05 }}
+              className={`glass rounded-xl p-4 text-center transition ${earned ? "border border-amber-500/40 bg-amber-500/5" : "opacity-50"}`}
+            >
+              <p className="text-3xl mb-2">{earned ? icon : "🔒"}</p>
+              <p className={`text-sm font-semibold ${earned ? "text-amber-400" : "text-slate-500"}`}>{name}</p>
+              <p className="text-slate-500 text-xs mt-1">{desc}</p>
+              {earned && <p className="text-green-400 text-xs mt-2">✓ Earned</p>}
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

@@ -6,14 +6,14 @@ const features = [
   { icon: FiBookOpen, title: "Learn Finance", desc: "Gamified modules covering stocks, mutual funds, SIP, and more.", color: "indigo", href: "/demo" },
   { icon: FiTrendingUp, title: "Trade Stocks", desc: "Real-time simulator with live market data and portfolio tracking.", color: "cyan", href: "/trading" },
   { icon: FiShield, title: "Demo Mode", desc: "Practice with ₹1,00,000 virtual currency — zero risk.", color: "green", href: "/demo" },
-  { icon: FiAward, title: "Earn Badges", desc: "Unlock achievements as you complete learning milestones.", color: "amber", href: "/demo" },
+  { icon: FiAward, title: "Earn Badges", desc: "Unlock achievements as you complete learning milestones.", color: "amber", href: "/demo#badges" },
 ];
 
 const modules = [
   { title: "Basics of Investing", level: "Beginner", modules: 8, color: "indigo", href: "/demo" },
-  { title: "Stock Market 101", level: "Beginner", modules: 12, color: "cyan", href: "/demo" },
-  { title: "Mutual Funds Deep Dive", level: "Intermediate", modules: 10, color: "amber", href: "/investments" },
-  { title: "SIP & Long-term Wealth", level: "Intermediate", modules: 9, color: "green", href: "/investments" },
+  { title: "Stock Market 101", level: "Beginner", modules: 12, color: "cyan", href: "/trading" },
+  { title: "Mutual Funds Deep Dive", level: "Intermediate", modules: 10, color: "amber", href: "/investments?tab=mf" },
+  { title: "SIP & Long-term Wealth", level: "Intermediate", modules: 9, color: "green", href: "/investments?tab=sip" },
   { title: "Advanced Trading", level: "Advanced", modules: 15, color: "red", href: "/trading" },
   { title: "Portfolio Management", level: "Advanced", modules: 11, color: "purple", href: "/analytics" },
 ];

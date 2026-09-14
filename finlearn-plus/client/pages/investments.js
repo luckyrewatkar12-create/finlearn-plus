@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 
@@ -71,7 +72,15 @@ function SIPCalculator() {
 }
 
 export default function Investments() {
+  const router = useRouter();
   const [tab, setTab] = useState("mf");
+
+  // Auto-switch tab based on URL query param e.g. ?tab=sip
+  useEffect(() => {
+    if (router.query.tab) {
+      setTab(router.query.tab);
+    }
+  }, [router.query.tab]);
 
   const riskColor = { Low: "green", Medium: "amber", High: "red" };
 
